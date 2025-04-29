@@ -23,6 +23,20 @@ namespace LibraryManagement
 
             builder.Services.AddScoped<IRepositoryComm, RepositoryComm>();
             builder.Services.AddScoped<IRepositoryQu, RepositoryQu>();
+            builder.Services.AddHttpClient<IRepositoryQu, RepositoryQu>();
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("OpenCorsPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
 
             var app = builder.Build();
 
@@ -35,6 +49,8 @@ namespace LibraryManagement
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            app.UseCors("OpenCorsPolicy");
 
 
             app.MapControllers();

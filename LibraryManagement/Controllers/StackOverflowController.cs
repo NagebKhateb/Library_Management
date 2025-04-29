@@ -1,5 +1,4 @@
-﻿using Infrastructore.Repositories.Commands;
-using Infrastructore.Repositories.Queries;
+﻿using Infrastructore.Repositories.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.Controllers
@@ -9,12 +8,28 @@ namespace LibraryManagement.Controllers
     public class StackOverflowController : ControllerBase
     {
         private readonly IRepositoryQu _repositoryQu;
-        private readonly IRepositoryComm _repositoryComm;
 
-        public StackOverflowController(IRepositoryComm repositoryComm, IRepositoryQu repositoryQu)
+
+        public StackOverflowController(IRepositoryQu repositoryQu)
         {
             this._repositoryQu = repositoryQu;
-            this._repositoryComm = repositoryComm;
+        }
+
+        [HttpGet("questions")]
+        public async Task<IActionResult> GetRecentQuestions()
+        {
+            var questions = await _repositoryQu.GetRecentQuestionsAsync();
+            return Ok(questions);
+        }
+
+        [HttpGet("questions/{id}")]
+        public async Task<IActionResult> GetQuestionDetails(int id)
+        {
+            var question = await _repositoryQu.GetQuestionByIdAsync(id);
+            if (question == null)
+                return NotFound();
+
+            return Ok(question);
         }
     }
 }
