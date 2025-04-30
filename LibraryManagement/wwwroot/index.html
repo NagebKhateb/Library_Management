@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Library System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="header-title">Welcome to Our Portal</h1>
+                <p class="header-subtitle">Choose your destination below</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="filter-section">
+                <div class="select-wrapper">
+                    <select id="mainCategory">
+                        <option value="" disabled selected>Select a category</option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <div class="select-wrapper">
+                    <select id="subCategory" disabled>
+                        <option value="" disabled selected>Select a subcategory</option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <button class="btn btn-primary" id="filterBtn">
+                    <i class="fas fa-filter"></i> Apply Filters
+                </button>
+            </div>
+
+            <div class="books-section" id="booksSection">
+                <h2>Filtered Books</h2>
+                <ul id="booksList" class="book-list"></ul>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="stackoverflow.html" class="btn btn-secondary">
+                    <i class="fab fa-stack-overflow"></i> Browse StackOverflow Questions
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Our Portal</h3>
+                <p>Explore books and developer questions in one place.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="stackoverflow.html">StackOverflow</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Modern Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

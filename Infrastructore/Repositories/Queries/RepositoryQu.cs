@@ -54,6 +54,21 @@ namespace Infrastructore.Repositories.Queries
             return (paginatedList, metaData);
         }
 
+        public async Task<List<BookSimpleDto>> GetBooksByCategoryFilterAsync(int categoryId, int subCategoryId)
+        {
+            var books = await _dbContext.Books
+                .Where(b => b.SubCategory.CategoryId == categoryId && b.SubCategoryId == subCategoryId && b.IsActive)
+                .Select(b => new BookSimpleDto
+                {
+                    BookId = b.BookId,
+                    Title = b.Title,
+                    Description = b.Description
+                })
+                .ToListAsync();
+
+            return books;
+        }
+
 
 
         public async Task<List<AuthorRead>> GetAuthorsByBookIdAsync(int bookId)

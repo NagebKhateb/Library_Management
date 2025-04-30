@@ -1,7 +1,11 @@
+using Domain.Profiles;
 using Infrastructore.DbConexts;
 using Infrastructore.Repositories.Commands;
 using Infrastructore.Repositories.Queries;
+using LibraryManagement.Filters;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using System.Text.Json.Serialization;
 
 namespace LibraryManagement
 {
@@ -9,6 +13,14 @@ namespace LibraryManagement
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .WriteTo.Console()
+                .WriteTo.File("Logs/stackoverflow_log.txt",
+                    rollingInterval: RollingInterval.Day,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}")
+                .CreateLogger();
+
             var builder = WebApplication.CreateBuilder(args);
 
 
@@ -25,17 +37,27 @@ namespace LibraryManagement
             builder.Services.AddScoped<IRepositoryQu, RepositoryQu>();
             builder.Services.AddHttpClient<IRepositoryQu, RepositoryQu>();
 
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("OpenCorsPolicy", builder =>
+                options.AddPolicy("AllowAll", builder =>
                 {
                     builder.AllowAnyOrigin()
                            .AllowAnyMethod()
                            .AllowAnyHeader();
                 });
             });
+
+            builder.Services.AddScoped<LibraryActionFilter>();
+
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                });
+
+            builder.Host.UseSerilog();
 
 
             var app = builder.Build();
@@ -48,9 +70,15 @@ namespace LibraryManagement
 
             app.UseHttpsRedirection();
 
+            app.UseDefaultFiles(); // index.html
+            app.UseStaticFiles();  // wwwroot
+
+            app.UseRouting();
             app.UseAuthorization();
 
-            app.UseCors("OpenCorsPolicy");
+            app.UseCors("AllowAll");
+
+            app.UseSerilogRequestLogging();
 
 
             app.MapControllers();
@@ -59,3 +87,6 @@ namespace LibraryManagement
         }
     }
 }
+
+
+// https://localhost:7203/swagger/index.html

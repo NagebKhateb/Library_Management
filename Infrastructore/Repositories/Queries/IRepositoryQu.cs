@@ -10,6 +10,8 @@ namespace Infrastructore.Repositories.Queries
 
         Task<(PaginatedList<Book>, PaginationMetaData)> GetBooksPagedByAuthorIdAsync(int authorId, int pageNumber, int pageSize);
 
+        Task<List<BookSimpleDto>> GetBooksByCategoryFilterAsync(int categoryId, int subCategoryId);
+
 
 
         Task<List<AuthorRead>> GetAuthorsByBookIdAsync(int bookId);

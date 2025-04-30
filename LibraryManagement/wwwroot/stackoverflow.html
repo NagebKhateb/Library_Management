@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse the latest StackOverflow questions">
+    <title>StackOverflow Questions | Developer Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/stackoverflow.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevPortal</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Books</a></li>
+                <li><a href="stackoverflow.html" class="active">StackOverflow</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-header">
+            <h1 class="page-title">
+                <i class="fab fa-stack-overflow"></i> Latest Questions
+            </h1>
+            <p>Showing the 50 most recent technical questions from StackOverflow</p>
+        </section>
+
+        <section>
+            <div id="loadingIndicator" style="text-align: center; padding: 30px;">
+                <div style="font-size: 2rem; color: var(--primary-color);">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <p>Loading questions...</p>
+            </div>
+
+            <div id="questionsContainer" class="questions-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="currentYear"></span> Developer Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/stackoverflow.js"></script>
+</body>
+</html>

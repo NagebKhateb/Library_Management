@@ -33,9 +33,5 @@ namespace Infrastructore.Repositories.Commands
         Task CreateSubCategoryAsync(SubCategoryCreate dto);
 
         Task<bool> DeleteSubCategoryAsync(int subCategoryId);
-
-
-
-
     }
 }

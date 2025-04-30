@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StackOverflow question details">
+    <title>Question Details | Developer Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stackoverflow.css">
+    <link rel="stylesheet" href="css/question.css">
+</head>
+<body>
+    <header class="app-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">DevPortal</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Books</a></li>
+                <li><a href="stackoverflow.html">StackOverflow</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="loadingIndicator" class="loading-state">
+            <div class="spinner"></div>
+        </div>
+
+        <div id="questionDetails" class="question-details-container"></div>
+
+        <div id="errorDisplay" class="error-state hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            <button id="retryButton" class="btn btn-outline">
+                <i class="fas fa-sync-alt"></i> Retry
+            </button>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Developer Resources</h3>
+                <ul>
+                    <li><a href="https://stackoverflow.com" target="_blank" rel="noopener">StackOverflow</a></li>
+                    <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://developer.mozilla.org" target="_blank" rel="noopener">MDN Web Docs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Developer Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/question.js" type="module"></script>
+</body>
+</html>
